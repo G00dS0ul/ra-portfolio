@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --font-gravica: "NeuGravica", sans-serif;
+  --color-bg-primary: #120016;
+  --color-bg-secondary: #d200ff;
+  --color-brand-text: #26012f;
+  --color-highlight: #bfff00;
+}
+
+@font-face {
+  font-family: "NeuGravica";
+  src: url("/fonts/neue-gravica-regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NeuGravica";
+  src: url("/fonts/neue-gravica-medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NeuGravica";
+  src: url("/fonts/neue-gravica-bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NeuGravica";
+  src: url("/fonts/neue-gravica-black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+body {
+  font-family: "NeuGravica", sans-serif;
+  background-color: --color-bg-primary;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    filter: blur(20px);
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
