@@ -7,7 +7,13 @@ import { cloudImg } from "./lib/cloudinary";
 // Pick your best/most impressive image for the intro
 const INTRO_IMAGE = cloudImg("DEVUB_Brand_Guideline-01", 1920);
 
-export default function GridReveal() {
+export default function GridReveal({
+  onRevealing,
+  onIntroComplete,
+}: {
+  onRevealing?: () => void;
+  onIntroComplete?: () => void;
+}) {
   const [triggered, setTriggered] = useState(false);
   const [done, setDone] = useState(false);
 
@@ -34,12 +40,14 @@ export default function GridReveal() {
 
     const trigger = () => {
       setTriggered(true);
+      onRevealing?.();
       setTimeout(() => {
         document.documentElement.style.overflow = "auto";
         document.body.style.overflow = "auto";
         localStorage.setItem("intro-seen", "true");
         setDone(true);
-      }, 900);
+        onIntroComplete?.();
+      }, 1300);
     };
 
     window.addEventListener("wheel", trigger, { once: true, passive: true });
@@ -128,7 +136,7 @@ export default function GridReveal() {
             <h1 className="text-white font-black text-6xl md:text-8xl tracking-tight leading-none">
               RAYESOMO
             </h1>
-            <p className="text-[#BFFF00] text-sm tracking-[0.4em] uppercase mt-3">
+            <p className="text-[#BFFF00] text-lg md:text-xl tracking-[0.4em] uppercase mt-3">
               Brand &amp; Visual Identity Designer
             </p>
           </motion.div>

@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import GlitchText from "./GlitchText";
 
-// Vertical glow beam definitions
 const BEAMS = [
   {
     left: "5%",
@@ -107,10 +106,9 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#120016] pt-20">
-      {/* ── GLOW BEAMS BACKGROUND ── */}
-
+      {/* Background with glow beams */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Strong base purple wash */}
+        {/* Base purple wash */}
         <div
           className="absolute inset-0"
           style={{
@@ -119,40 +117,36 @@ export default function Hero() {
           }}
         />
 
-        {/* Individual beams */}
-        {BEAMS.map((beam, i) => {
-          const beamStyle = {
-            position: "absolute" as const,
-            left: beam.left,
-            top: "-5%",
-            width: beam.width,
-            height: beam.height,
-            transform: "translateX(-50%)",
-            background: `linear-gradient(to bottom, ${beam.color} 0%, ${beam.color}CC 30%, ${beam.color}44 70%, transparent 100%)`,
-            filter: `blur(${beam.blur}px)`,
-            borderRadius: "0 0 50% 50%",
-            zIndex: 0,
-          };
+        {/* Animated beams */}
+        {BEAMS.map((beam, i) => (
+          <motion.div
+            key={i}
+            style={{
+              position: "absolute",
+              left: beam.left,
+              top: "-5%",
+              width: beam.width,
+              height: beam.height,
+              transform: "translateX(-50%)",
+              background: `linear-gradient(to bottom, ${beam.color} 0%, ${beam.color}CC 30%, ${beam.color}44 70%, transparent 100%)`,
+              filter: `blur(${beam.blur}px)`,
+              borderRadius: "0 0 50% 50%",
+              zIndex: 0,
+            }}
+            animate={{
+              opacity: [0.15, 0.35, 0.15],
+              scaleY: [0.95, 1.05, 0.95],
+            }}
+            transition={{
+              duration: 3 + beam.delay * 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: beam.delay,
+            }}
+          />
+        ))}
 
-          return (
-            <motion.div
-              key={i}
-              style={beamStyle}
-              animate={{
-                opacity: [0.15, 0.35, 0.15],
-                scaleY: [0.95, 1.05, 0.95],
-              }}
-              transition={{
-                duration: 3 + beam.delay * 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: beam.delay,
-              }}
-            />
-          );
-        })}
-
-        {/* Bright center hotspot */}
+        {/* Center hotspot */}
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2"
           style={{
@@ -164,7 +158,7 @@ export default function Hero() {
           }}
         />
 
-        {/* Dark vignette on sides */}
+        {/* Side vignette */}
         <div
           className="absolute inset-0"
           style={{
@@ -182,7 +176,7 @@ export default function Hero() {
         />
       </div>
 
-      {/* ── HERO CONTENT ── */}
+      {/* Hero content */}
       <motion.div
         className="relative z-10 text-center px-6 max-w-5xl mx-auto"
         style={{
@@ -203,18 +197,27 @@ export default function Hero() {
         </motion.p>
 
         <motion.h1
-          className="text-white font-black leading-[1.05] mb-6"
+          className="text-white font-black leading-[1.1] mb-6"
           style={{
             x: layer2X,
             y: layer2Y,
-            fontSize: "clamp(3rem, 8vw, 7rem)",
           }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          Crafting Brands That <span className="text-[#D200FF]"><GlitchText>Speak</GlitchText></span>{" "}
-          Before You Do
+          <span
+            className="block font-normal text-lg mb-3"
+            style={{ fontSize: "clamp(50px, 8vw, 40px)" }}
+          >
+            I Don&apos;t Just Design Logos
+          </span>
+
+          <span className="block text-5xl md:text-7xl">I Build The Reason</span>
+
+          <span className="block text-5xl md:text-7xl text-bg-secondary mt-2">
+            They Choose You
+          </span>
         </motion.h1>
 
         <motion.p
@@ -224,7 +227,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          Branding · Ad Design · Packaging · 3D · Animation · Web
+          Branding · Social Media Design · Web3 Design · Ad Design · Packaging
         </motion.p>
 
         <motion.div

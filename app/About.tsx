@@ -34,39 +34,41 @@ export default function About() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 1.2, delay: 0.4 }}
         >
-          <GlitchText>About</GlitchText>
+          <GlitchText>Meet Me</GlitchText>
         </motion.h2>
       </motion.div>
 
       {/* Content Section */}
-      <div className="flex flex-col md:flex-row gap-16 items-center">
+      <div className="flex flex-col md:flex-row gap-12 items-stretch">
         <motion.div
-          className="flex-1"
+          className="w-full md:w-[60%"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8 }}
         >
           <h3 className="text-white text-5xl font-black mb-6">
-            Design is not just <span className="text-highlight">art</span>
-            <br />- It's{" "}
-            <RotatingGlitchText
-              words={["Strategy", "Purpose", "Experience", "Communication"]}
-              className="text-highlight"
-              interval={2000}
-            />
-            .
+            I'm Rayesomo Ayodimeji,
           </h3>
           <p className="text-gray-400 leading-relaxed mb-4">
-            I'm a brand and visual identity designer with a passion for building
-            brands that connect, communicate, and convert. Every project I take
-            on starts with a deep understanding of the brand's story, audience,
-            and goals.
+            I build the visual systems behind brands that walk into a room and
+            own it — before anyone says a word. My work goes beyond aesthetics.
+            It's about designing intent — making sure everything your brand
+            shows the world is working as hard as you are.
           </p>
           <p className="text-gray-400 leading-relaxed mb-8">
-            From logo design to full brand systems, packaging, 3D renders,
-            animation, and web — I bring a holistic creative approach to every
-            brief.
+            With 5+ years of experience across brand strategy and visual
+            identity, I've worked with startups, agencies, and growing
+            businesses who had the product, the ambition, and the drive — but a
+            brand that wasn't keeping up. I fix that. I design complete visual
+            identities that align your message, your personality, and your
+            long-term goals into one cohesive, unmistakable presence.
+          </p>
+          <p className="text-gray-400 leading-relaxed mb-8">
+            Every decision I make is intentional. Every color, typeface, and
+            layout exists for a reason. Because in a world drowning in average,
+            strategic design isn't a luxury — it's the difference between being
+            chosen and being overlooked.
           </p>
           <a
             href="/start-project"
@@ -95,7 +97,7 @@ export default function About() {
 
         {/* Logomark displayed in About */}
         <motion.div
-          className="flex-1 bg-brand-text h-96 flex items-center justify-center relative overflow-hidden"
+          className="relative w-full bg-[bg-primary] overflow-hidden flex items-center justify-center md:w-[40%]"
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.2 }}

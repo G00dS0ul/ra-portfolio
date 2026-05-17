@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import GlitchText from "./GlitchText";
+import { title } from "process";
+import { desc } from "framer-motion/client";
 
 export default function Services() {
   const containerVariants = {
@@ -61,33 +63,33 @@ export default function Services() {
         {[
           {
             number: "01",
-            title: "Branding",
-            desc: "Complete brand identity systems — logos, color, typography, and brand guidelines that make you unforgettable.",
+            title: "Brand Identity",
+            desc: "I build complete visual identities — logo, color, type, and tone — that tell your brand's story at a glance. Strategic, cohesive, and built to last.",
           },
           {
             number: "02",
-            title: "Ad & Banner Design",
-            desc: "High-converting ads and banners for digital and print — designed to stop the scroll and drive action.",
+            title: "Social Media Design",
+            desc: "Visuals that stop the scroll and stay on-brand — every time. Your feed should look like a brand, not a mood board..",
           },
           {
             number: "03",
-            title: "Packaging Design",
-            desc: "Packaging that sells before the product does. Structured, strategic, and shelf-ready.",
+            title: "Web3 Design",
+            desc: "Bold, credible visuals for NFT projects, DAOs, and crypto brands that want to look as serious as the technology they're building on. Trust starts with how you look.",
           },
           {
             number: "04",
-            title: "3D Modelling",
-            desc: "Realistic 3D product renders and models for presentations, mockups, and immersive visuals.",
+            title: "Ad Design",
+            desc: "Ad creatives designed to perform — sharp, on-brand, and built to make people act. Because a beautiful ad that doesn't convert is just expensive decoration.",
           },
           {
             number: "05",
-            title: "Animation",
-            desc: "Motion design and animated brand assets that bring your identity to life across digital platforms.",
+            title: "Packaging Design",
+            desc: "Packaging that sells before the customer even picks it up — premium, intentional, and impossible to ignore on a crowded shelf. Your product deserves to look the part.",
           },
           {
             number: "06",
-            title: "Web Design",
-            desc: "Clean, conversion-focused web designs that reflect your brand and guide your visitors to take action.",
+            title: "Motion Design",
+            desc: "Dynamic, engaging motion graphics that bring your brand to life and enhance user experience across digital platforms.",
           },
         ].map((service) => (
           <motion.div
