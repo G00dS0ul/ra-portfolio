@@ -69,7 +69,7 @@ export default function About() {
             brief.
           </p>
           <a
-            href="#contact"
+            href="/start-project"
             className="bg-highlight text-bg-primary px-8 py-3 font-bold tracking-wide hover:opacity-90 transition-opacity inline-flex items-center justify-center"
             onMouseEnter={() => setWorkButtonHovered(true)}
             onMouseLeave={() => setWorkButtonHovered(false)}

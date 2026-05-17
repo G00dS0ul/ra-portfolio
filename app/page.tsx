@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SplashIntro from "./SplashIntro";
 import GridReveal from "./GridReaveal";
 import GlitchReveal from "./GlitchReveal";
@@ -16,6 +16,12 @@ import About from "./About";
 export default function Home() {
   const [workButtonHovered, setWorkButtonHovered] = useState(false);
   const [emailButtonHovered, setEmailButtonHovered] = useState(false);
+
+  // Ensure scroll is always enabled when page mounts
+  useEffect(() => {
+    document.documentElement.style.overflow = "auto";
+    document.body.style.overflow = "auto";
+  }, []);
   return (
     <main className="min-h-screen bg-bg-primary">
       <GridReveal />

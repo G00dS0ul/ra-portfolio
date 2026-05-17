@@ -131,6 +131,7 @@ export default function Hero() {
             background: `linear-gradient(to bottom, ${beam.color} 0%, ${beam.color}CC 30%, ${beam.color}44 70%, transparent 100%)`,
             filter: `blur(${beam.blur}px)`,
             borderRadius: "0 0 50% 50%",
+            zIndex: 0,
           };
 
           return (
@@ -138,11 +139,11 @@ export default function Hero() {
               key={i}
               style={beamStyle}
               animate={{
-                opacity: [0.2, 0.5, 0.3],
+                opacity: [0.15, 0.35, 0.15],
                 scaleY: [0.95, 1.05, 0.95],
               }}
               transition={{
-                duration: 3 + i * 0.4,
+                duration: 3 + beam.delay * 2,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: beam.delay,
