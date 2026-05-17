@@ -5,7 +5,7 @@ import Image from "next/image";
 import { cloudImg } from "./lib/cloudinary";
 
 // Pick your best/most impressive image for the intro
-const INTRO_IMAGE = cloudImg("DEVUB_Brand_Guideline-01", 1920);
+const INTRO_IMAGE = cloudImg("Full_Page", 1920);
 
 export default function GridReveal({
   onRevealing,
@@ -124,20 +124,32 @@ export default function GridReveal({
       <AnimatePresence>
         {!triggered && (
           <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-center pointer-events-none"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none"
+            style={{
+              flexDirection: "column",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 32,
+            }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <p className="text-white/40 text-xs tracking-[0.5em] uppercase mb-3">
+            
+
+            <Image
+              src="/RA%20Logo%20Vertical.png"
+              alt="Logo"
+              width={400}
+              height={400}
+              className="object-contain drop-shadow-2xl"
+              priority
+            />
+
+            <p className="text-highlight text-xs tracking-[0.5em] uppercase text-center">
               Portfolio
-            </p>
-            <h1 className="text-white font-black text-6xl md:text-8xl tracking-tight leading-none">
-              RAYESOMO
-            </h1>
-            <p className="text-[#BFFF00] text-lg md:text-xl tracking-[0.4em] uppercase mt-3">
-              Brand &amp; Visual Identity Designer
             </p>
           </motion.div>
         )}

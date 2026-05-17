@@ -65,7 +65,7 @@ export default function Home() {
             © 2026 Charitoo Studio. All rights reserved.
           </span>
           <div className="flex gap-6 text-gray-400 text-sm">
-            <a href="#" className="hover:text-highlight transition-colors">
+            <a href="https://www.instagram.com/charitoo_designs" className="hover:text-highlight transition-colors">
               <Image
                 src="/instagram.png"
                 alt="Instagram"
@@ -74,7 +74,10 @@ export default function Home() {
                 className="object-contain"
               />
             </a>
-            <a href="#" className="hover:text-highlight transition-colors">
+            <a
+              href="https://www.behance.net/charitoo-designs/services"
+              className="hover:text-highlight transition-colors"
+            >
               <Image
                 src="/behance.png"
                 alt="Behance"

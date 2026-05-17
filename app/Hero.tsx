@@ -207,13 +207,13 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <span
-            className="block font-normal text-lg mb-3"
+            className="block font-normal text-lg mb-0.1"
             style={{ fontSize: "clamp(50px, 8vw, 40px)" }}
           >
             I Don&apos;t Just Design Logos
           </span>
 
-          <span className="block text-5xl md:text-7xl">I Build The Reason</span>
+          <span className="block text-5xl md:text-7xl leading-none mb-2">I Build The Reason</span>
 
           <span className="block text-5xl md:text-7xl text-bg-secondary mt-2">
             They Choose You
@@ -243,6 +243,7 @@ export default function Hero() {
             whileHover={{ scale: 1.05, boxShadow: "0 0 30px #BFFF0088" }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 300 }}
+            style={{flexDirection: "row", display: "flex", alignItems: "center", gap: 8}}
           >
             <GlitchText className="text-[#120016]">View Work</GlitchText>
           </motion.a>
