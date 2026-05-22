@@ -78,8 +78,16 @@ export default function Clients() {
               <Image
                 src={brand.logo}
                 alt={brand.name}
-                width={brand.name === "Roc B" || brand.name === "Peak Photon" ? 60 : 120}
-                height={brand.name === "Roc B" || brand.name === "Peak Photon" ? 60 : 40}
+                width={
+                  brand.name === "Roc B" || brand.name === "Peak Photon"
+                    ? 60
+                    : 120
+                }
+                height={
+                  brand.name === "Roc B" || brand.name === "Peak Photon"
+                    ? 60
+                    : 40
+                }
                 className="object-contain transition-all duration-200 opacity-70 group-hover:opacity-100 group-hover:scale-110 group-hover:brightness-150"
                 loading="lazy"
               />
@@ -95,8 +103,16 @@ export default function Clients() {
               <Image
                 src={brand.logo}
                 alt={brand.name}
-                width={brand.name === "Roc B" || brand.name === "Peak Photon" ? 60 : 120}
-                height={brand.name === "Roc B" || brand.name === "Peak Photon" ? 60 : 40}
+                width={
+                  brand.name === "Roc B" || brand.name === "Peak Photon"
+                    ? 60
+                    : 120
+                }
+                height={
+                  brand.name === "Roc B" || brand.name === "Peak Photon"
+                    ? 60
+                    : 40
+                }
                 className="object-contain transition-all duration-200 opacity-70 group-hover:opacity-100 group-hover:scale-110 group-hover:brightness-150"
                 loading="lazy"
               />
