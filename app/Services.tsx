@@ -26,7 +26,7 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="px-4 sm:px-6 md:px-10 mt-20 sm:mt-40">
+    <section id="services" className="px-4 sm:px-6 md:px-10 mt-8 sm:mt-40">
       <motion.div
         className="text-center mb-12 sm:mb-16 flex flex-col items-center"
         initial="hidden"

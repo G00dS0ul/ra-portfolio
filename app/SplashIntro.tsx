@@ -16,14 +16,64 @@ const tools = [
 
 // Each splash: appears at startAt, peaks at peakAt, partially fades by dimAt, fully clears at endAt
 const splashes = [
-  { src: "/splash-purple.png", startAt: 0.0,  peakAt: 0.1,  dimAt: 0.2,  endAt: 0.88, x: "15%", y: "20%", rotate: -10, size: 550 },
-  { src: "/splash-lime.png",   startAt: 0.1,  peakAt: 0.22, dimAt: 0.34, endAt: 0.88, x: "60%", y: "10%", rotate: 15,  size: 500 },
-  { src: "/splash-purple.png", startAt: 0.25, peakAt: 0.37, dimAt: 0.5,  endAt: 0.88, x: "40%", y: "50%", rotate: 5,   size: 620 },
-  { src: "/splash-lime.png",   startAt: 0.4,  peakAt: 0.52, dimAt: 0.65, endAt: 0.88, x: "75%", y: "55%", rotate: -8,  size: 480 },
-  { src: "/splash-purple.png", startAt: 0.55, peakAt: 0.67, dimAt: 0.78, endAt: 0.88, x: "25%", y: "65%", rotate: 12,  size: 560 },
+  {
+    src: "/splash-purple.png",
+    startAt: 0.0,
+    peakAt: 0.1,
+    dimAt: 0.2,
+    endAt: 0.88,
+    x: "15%",
+    y: "20%",
+    rotate: -10,
+    size: 550,
+  },
+  {
+    src: "/splash-lime.png",
+    startAt: 0.1,
+    peakAt: 0.22,
+    dimAt: 0.34,
+    endAt: 0.88,
+    x: "60%",
+    y: "10%",
+    rotate: 15,
+    size: 500,
+  },
+  {
+    src: "/splash-purple.png",
+    startAt: 0.25,
+    peakAt: 0.37,
+    dimAt: 0.5,
+    endAt: 0.88,
+    x: "40%",
+    y: "50%",
+    rotate: 5,
+    size: 620,
+  },
+  {
+    src: "/splash-lime.png",
+    startAt: 0.4,
+    peakAt: 0.52,
+    dimAt: 0.65,
+    endAt: 0.88,
+    x: "75%",
+    y: "55%",
+    rotate: -8,
+    size: 480,
+  },
+  {
+    src: "/splash-purple.png",
+    startAt: 0.55,
+    peakAt: 0.67,
+    dimAt: 0.78,
+    endAt: 0.88,
+    x: "25%",
+    y: "65%",
+    rotate: 12,
+    size: 560,
+  },
 ];
 
-function getSplashOpacity(splash: typeof splashes[0], progress: number) {
+function getSplashOpacity(splash: (typeof splashes)[0], progress: number) {
   // Before splash starts
   if (progress < splash.startAt) return 0;
 
@@ -82,9 +132,8 @@ export default function SplashIntro() {
   if (done) return null;
 
   const toolsOpacity = Math.max(0, 1 - progress * 4);
-  const wrapperOpacity = progress >= 0.9
-    ? Math.max(0, 1 - (progress - 0.9) * 10)
-    : 1;
+  const wrapperOpacity =
+    progress >= 0.9 ? Math.max(0, 1 - (progress - 0.9) * 10) : 1;
 
   return (
     <div
@@ -102,8 +151,17 @@ export default function SplashIntro() {
             fontSize: tool.size,
             opacity: toolsOpacity,
           }}
-          animate={{ y: [0, -20, 0, 20, 0], rotate: [-5, 5, -5], scale: [1, 1.1, 1] }}
-          transition={{ duration: tool.duration, repeat: Infinity, delay: tool.delay, ease: "easeInOut" }}
+          animate={{
+            y: [0, -20, 0, 20, 0],
+            rotate: [-5, 5, -5],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: tool.duration,
+            repeat: Infinity,
+            delay: tool.delay,
+            ease: "easeInOut",
+          }}
         >
           {tool.emoji}
         </motion.div>

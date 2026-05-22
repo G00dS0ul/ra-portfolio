@@ -18,7 +18,7 @@ const BRANDS = [
 export default function Clients() {
   return (
     <motion.section
-      className="relative bg-bg-primary mt-12 mb-5"
+      className="relative bg-bg-primary mt-6 sm:mt-12 md:mt-12 mb-4 sm:mb-5 px-4 sm:px-6"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -43,7 +43,7 @@ export default function Clients() {
 
       {/* Label */}
       <motion.p
-        className="text-white/30 text-xs tracking-[0.4em] uppercase text-center mb-4 pt-4"
+        className="text-white/30 text-xs sm:text-xs md:text-xs tracking-[0.4em] uppercase text-center mb-3 sm:mb-4 pt-3 sm:pt-4"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -54,7 +54,7 @@ export default function Clients() {
 
       {/* Strip with pattern background */}
       <div
-        className="overflow-hidden relative py-2"
+        className="overflow-hidden relative py-2 sm:py-3"
         style={{
           backgroundColor: "#120016",
           backgroundImage: "url('/pattern.png')",
@@ -73,7 +73,7 @@ export default function Clients() {
           {BRANDS.map((brand, index) => (
             <div
               key={`a-${index}`}
-              className="flex items-center justify-center px-6 shrink-0 group cursor-default"
+              className="flex items-center justify-center px-3 sm:px-6 shrink-0 group cursor-default"
             >
               <Image
                 src={brand.logo}
@@ -90,7 +90,7 @@ export default function Clients() {
           {BRANDS.map((brand, index) => (
             <div
               key={`b-${index}`}
-              className="flex items-center justify-center px-6 shrink-0 group cursor-default"
+              className="flex items-center justify-center px-3 sm:px-6 shrink-0 group cursor-default"
             >
               <Image
                 src={brand.logo}

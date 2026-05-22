@@ -10,7 +10,7 @@ export default function About() {
   const [workButtonHovered, setWorkButtonHovered] = useState(false);
 
   return (
-    <section id="about" className="px-4 sm:px-6 md:px-10 mt-20 sm:mt-40">
+    <section id="about" className="px-4 sm:px-6 md:px-10 mt-8 sm:mt-40">
       {/* Heading Section */}
       <motion.div
         className="text-center mb-12 sm:mb-16 flex flex-col items-center"
