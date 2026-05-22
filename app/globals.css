@@ -10,6 +10,20 @@
 
 @font-face {
   font-family: "NeuGravica";
+  src: url("/fonts/neue-gravica-extra-light.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NeuGravica";
+  src: url("/fonts/neue-gravica-light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NeuGravica";
   src: url("/fonts/neue-gravica-regular.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
@@ -52,4 +66,46 @@ body {
     filter: blur(0);
     transform: translateY(0);
   }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
+
+.glowing-border-wrap {
+  animation: border-spin 12s linear infinite;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 0deg,
+    #d200ff 8%,
+    transparent 15%,
+    transparent 43%,
+    #d200ff 58%,
+    transparent 65%,
+    transparent 360deg
+  );
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-25%);
+  }
+}
+
+.marquee-scroll {
+  animation: marquee 8s linear infinite;
 }

@@ -26,35 +26,35 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="px-10 mt-40">
+    <section id="services" className="px-4 sm:px-6 md:px-10 mt-20 sm:mt-40">
       <motion.div
-        className="text-center mb-16 flex flex-col items-center"
+        className="text-center mb-12 sm:mb-16 flex flex-col items-center"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
         <motion.p
-          className="text-bg-secondary text-sm tracking-[0.3em] uppercase mb-2 h-6"
+          className="text-bg-secondary text-xs sm:text-sm tracking-[0.3em] uppercase mb-2 h-6"
           initial={{ opacity: 0, filter: "blur(20px)" }}
           whileInView={{ opacity: 1, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 1.2 }}
+          transition={{ duration: 0.8 }}
         >
           <GlitchText>What I Do</GlitchText>
         </motion.p>
         <motion.h2
-          className="text-white text-5xl font-black h-16"
+          className="text-white text-3xl sm:text-4xl md:text-5xl font-black h-auto sm:h-16"
           initial={{ opacity: 0, filter: "blur(20px)" }}
           whileInView={{ opacity: 1, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 1.2, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
         >
           <GlitchText>Services</GlitchText>
         </motion.h2>
       </motion.div>
 
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-text"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-brand-text"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -88,22 +88,22 @@ export default function Services() {
           },
           {
             number: "06",
-            title: "Motion Design",
-            desc: "Dynamic, engaging motion graphics that bring your brand to life and enhance user experience across digital platforms.",
+            title: "Motion Graphics",
+            desc: "Designs that don't just sit there, they move, breathe, and demand attention. Because in a world that's always scrolling, the brands that animate their story are the ones that get remembered.",
           },
         ].map((service) => (
           <motion.div
             key={service.number}
             variants={itemVariants}
-            className="bg-bg-primary p-8 hover:bg-brand-text transition-colors group"
+            className="bg-bg-primary p-6 sm:p-8 hover:bg-brand-text transition-colors group"
           >
-            <span className="text-highlight text-sm font-bold tracking-widest">
+            <span className="text-highlight text-xs sm:text-sm font-bold tracking-widest">
               {service.number}
             </span>
-            <h3 className="text-white text-xl font-bold mt-3 mb-3 group-hover:text-highlight transition-colors">
+            <h3 className="text-white text-lg sm:text-xl font-bold mt-3 mb-3 group-hover:text-highlight transition-colors">
               {service.title}
             </h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
+            <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
               {service.desc}
             </p>
           </motion.div>

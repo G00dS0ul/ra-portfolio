@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import GlitchText from "./GlitchText";
 
@@ -105,7 +106,7 @@ export default function Hero() {
   }, [mouseX, mouseY]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#120016] pt-20">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-x-hidden overflow-y-visible bg-[#120016] pt-4 sm:pt-6 px-4 sm:px-6">
       {/* Background with glow beams */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Base purple wash */}
@@ -186,18 +187,24 @@ export default function Hero() {
           perspective: 1000,
         }}
       >
-        <motion.p
-          className="text-[#BFFF00]"
-          style={{ x: layer3X, y: layer3Y }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+        {/* Avatar */}
+        <motion.div
+          className="w-24 sm:w-32 md:w-40 h-24 sm:h-32 md:h-40 mx-auto mb-2 sm:mb-3 rounded-full overflow-hidden border-2 sm:border-3 border-[#BFFF00] shadow-lg relative"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <GlitchText>Brand &amp; Visual Identity Designer</GlitchText>
-        </motion.p>
+          <Image
+            src="/Profile Picture.png"
+            alt="Rayesomo Ayodimeji"
+            fill
+            className="object-cover"
+            unoptimized
+          />
+        </motion.div>
 
         <motion.h1
-          className="text-white font-black leading-[1.1] mb-6"
+          className="text-white font-black leading-[1.1] mb-2 sm:mb-3"
           style={{
             x: layer2X,
             y: layer2Y,
@@ -207,31 +214,40 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <span
-            className="block font-normal text-lg mb-0.1"
-            style={{ fontSize: "clamp(50px, 8vw, 40px)" }}
+            className="block font-normal text-lg sm:text-2xl mb-1 sm:mb-2"
+            style={{ fontSize: "clamp(16px, 5vw, 36px)" }}
           >
             I Don&apos;t Just Design Logos
           </span>
 
-          <span className="block text-5xl md:text-7xl leading-none mb-2">I Build The Reason</span>
+          <span
+            className="block leading-none mb-1 sm:mb-2"
+            style={{ fontSize: "clamp(28px, 10vw, 64px)" }}
+          >
+            I Build The Reason
+          </span>
 
-          <span className="block text-5xl md:text-7xl text-bg-secondary mt-2">
+          <span
+            className="block text-bg-secondary mt-1 sm:mt-2"
+            style={{ fontSize: "clamp(28px, 10vw, 64px)" }}
+          >
             They Choose You
           </span>
         </motion.h1>
 
         <motion.p
-          className="text-white/50 text-lg mb-10 tracking-wide"
+          className="text-white/40 text-xs sm:text-xs md:text-sm mb-3 sm:mb-6 tracking-wide px-2 font-extralight"
           style={{ x: layer1X, y: layer1Y }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          Branding · Social Media Design · Web3 Design · Ad Design · Packaging
+          Branding · Social Media Design · Web3 Design · Ad Design · Packaging ·
+          Motion Design
         </motion.p>
 
         <motion.div
-          className="flex items-center justify-center gap-4 flex-wrap"
+          className="flex items-center justify-center gap-2 sm:gap-4 flex-wrap px-2"
           style={{ x: layer1X, y: layer1Y }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -239,17 +255,22 @@ export default function Hero() {
         >
           <motion.a
             href="#work"
-            className="px-8 py-4 bg-[#BFFF00] text-[#120016] font-black text-sm tracking-widest uppercase"
+            className="px-4 sm:px-8 py-3 sm:py-4 bg-[#BFFF00] text-[#120016] font-black text-xs sm:text-sm tracking-widest uppercase whitespace-nowrap"
             whileHover={{ scale: 1.05, boxShadow: "0 0 30px #BFFF0088" }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: "spring", stiffness: 300 }}
-            style={{flexDirection: "row", display: "flex", alignItems: "center", gap: 8}}
+            style={{
+              flexDirection: "row",
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+            }}
           >
             <GlitchText className="text-[#120016]">View Work</GlitchText>
           </motion.a>
           <motion.a
             href="#contact"
-            className="px-8 py-4 border border-white/30 text-white font-bold text-sm tracking-widest uppercase"
+            className="px-4 sm:px-8 py-3 sm:py-4 border border-white/30 text-white font-bold text-xs sm:text-sm tracking-widest uppercase whitespace-nowrap"
             whileHover={{
               scale: 1.05,
               borderColor: "#BFFF00",

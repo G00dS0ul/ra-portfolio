@@ -111,7 +111,7 @@ const PROJECTS: Project[] = [
 
 // ── Style objects defined outside JSX to avoid rendering issues ──
 const cardStyle = { transformStyle: "preserve-3d" as const };
-const bigViewStyle = { height: "340px" };
+const bigViewStyle = { height: "clamp(200px, 50vw, 340px)" };
 const stripScrollStyle = {
   scrollbarWidth: "none" as const,
   msOverflowStyle: "none" as const,
@@ -327,6 +327,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                     fill
                     className="object-cover"
                     unoptimized
+                    loading="lazy"
                   />
                 </div>
               );
@@ -376,6 +377,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                   fill
                   className="object-contain"
                   unoptimized
+                  loading="lazy"
                 />
               </motion.div>
 
@@ -433,6 +435,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                         fill
                         className="object-cover"
                         unoptimized
+                        loading="lazy"
                       />
                     </div>
                   );
@@ -448,35 +451,35 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
 export default function Projects() {
   return (
-    <section id="work" className="px-10 mt-40">
+    <section id="work" className="px-4 sm:px-6 md:px-10 mt-10 sm:mt-20">
       <motion.div
-        className="text-center mb-16 flex flex-col items-center"
+        className="text-center mb-12 sm:mb-16 flex flex-col items-center"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
         <motion.p
-          className="text-bg-secondary text-sm tracking-[0.3em] uppercase mb-2 h-6"
+          className="text-bg-secondary text-xs sm:text-sm tracking-[0.3em] uppercase mb-2 h-6"
           initial={{ opacity: 0, filter: "blur(20px)" }}
           whileInView={{ opacity: 1, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 1.2 }}
+          transition={{ duration: 0.8 }}
         >
           <GlitchText>Selected Work</GlitchText>
         </motion.p>
         <motion.h2
-          className="text-white text-5xl font-black h-16"
+          className="text-white text-3xl sm:text-4xl md:text-5xl font-black h-auto sm:h-16"
           initial={{ opacity: 0, filter: "blur(20px)" }}
           whileInView={{ opacity: 1, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 1.2, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
         >
           <GlitchText>Projects</GlitchText>
         </motion.h2>
       </motion.div>
 
       <div
-        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"
         style={{ perspective: "1200px" }}
       >
         {PROJECTS.map((project, i) => (

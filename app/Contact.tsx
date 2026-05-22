@@ -44,13 +44,13 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="px-10 mt-40 mb-0 bg-bg-secondary/10 py-24 text-center"
+      className="px-4 sm:px-6 md:px-10 mt-10 sm:mt-20 mb-0 bg-bg-secondary/10 py-12 sm:py-24 text-center"
     >
       {/* Section header */}
-      <p className="text-bg-secondary text-sm tracking-[0.3em] uppercase mb-2">
+      <p className="text-bg-secondary text-xs sm:text-sm tracking-[0.3em] uppercase mb-2">
         Get In Touch
       </p>
-      <h2 className="text-white text-6xl font-black mb-6">
+      <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6">
         Let&apos;s Build Something{" "}
         <span className="text-highlight">
           <RotatingGlitchText
@@ -66,13 +66,13 @@ export default function Contact() {
           />
         </span>
       </h2>
-      <p className="text-gray-400 text-lg mb-12 max-w-xl mx-auto">
+      <p className="text-gray-400 text-sm sm:text-base md:text-lg mb-8 sm:mb-12 max-w-xl mx-auto px-2">
         Have a project in mind? Let&apos;s talk about how we can bring your
         brand vision to life.
       </p>
 
       {/* Contact cards */}
-      <div className="flex flex-col md:flex-row gap-4 max-w-5xl mx-auto text-left">
+      <div className="flex flex-col md:flex-row gap-3 sm:gap-4 max-w-5xl mx-auto text-left">
         {/* Email card */}
         <motion.a
           href={`mailto:${EMAIL}`}
@@ -93,6 +93,7 @@ export default function Contact() {
               width={30}
               height={30}
               className="object-contain"
+              loading="lazy"
             />
           </div>
 
@@ -144,6 +145,7 @@ export default function Contact() {
               width={50}
               height={50}
               className="object-contain"
+              loading="lazy"
             />
           </div>
 
@@ -186,6 +188,7 @@ export default function Contact() {
               fill
               className="object-cover"
               unoptimized
+              loading="lazy"
               style={{
                 objectPosition: "center 35%",
                 transformOrigin: "center 90%",

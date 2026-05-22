@@ -47,7 +47,7 @@ export default function GridReveal({
         localStorage.setItem("intro-seen", "true");
         setDone(true);
         onIntroComplete?.();
-      }, 1300);
+      }, 800);
     };
 
     window.addEventListener("wheel", trigger, { once: true, passive: true });
@@ -75,7 +75,7 @@ export default function GridReveal({
     position: "absolute" as const,
     inset: 0,
     transition: triggered
-      ? "transform 0.9s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.7s ease 0.15s"
+      ? "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease 0.1s"
       : "none",
     transform: triggered ? "scale(4)" : "scale(1)",
     opacity: triggered ? 0 : 1,
@@ -89,7 +89,7 @@ export default function GridReveal({
       "radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%)",
     pointerEvents: "none" as const,
     zIndex: 2,
-    transition: triggered ? "opacity 0.4s ease" : "none",
+    transition: triggered ? "opacity 0.25s ease" : "none",
     opacity: triggered ? 0 : 1,
   };
 
@@ -137,8 +137,6 @@ export default function GridReveal({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
-            
-
             <Image
               src="/RA%20Logo%20Vertical.png"
               alt="Logo"
