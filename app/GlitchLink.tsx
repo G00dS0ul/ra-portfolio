@@ -5,12 +5,14 @@ interface GlitchLinkProps {
   href: string;
   children: string;
   className?: string;
+  onClick?: () => void;
 }
 
 export default function GlitchLink({
   href,
   children,
   className = "",
+  onClick,
 }: GlitchLinkProps) {
   const [displayText, setDisplayText] = useState(children);
   const [isHovered, setIsHovered] = useState(false);
@@ -58,6 +60,7 @@ export default function GlitchLink({
       style={{ minWidth: `${children.length * 0.6}em` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={onClick}
     >
       {displayText}
     </a>
