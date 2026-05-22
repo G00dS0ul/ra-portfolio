@@ -200,6 +200,7 @@ export default function Hero() {
             fill
             className="object-cover"
             unoptimized
+            loading="lazy"
           />
         </motion.div>
 
