@@ -149,6 +149,88 @@ export default function About() {
           </div>
         </motion.div>
       </div>
+      {/* Social Proof Bar */}
+      <motion.div
+        className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-12"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        {/* Avatars + Rating */}
+        <div className="flex items-center gap-4">
+          {/* Stacked avatars */}
+          <div className="flex -space-x-3">
+            {["/avatar1.png", "/avatar2.png", "/avatar3.png"].map((src, i) => (
+              <div
+                key={i}
+                className="w-10 h-10 rounded-full border-2 border-[#120016] overflow-hidden"
+                style={{ backgroundColor: "#120016" }}
+              >
+                <Image
+                  src={src}
+                  alt={`Client ${i + 1}`}
+                  width={40}
+                  height={40}
+                  className="object-cover"
+                />
+              </div>
+            ))}
+            {/* +50 bubble */}
+            <div
+              className="w-10 h-10 rounded-full border-2 border-[#120016] flex items-center justify-center text-white text-xs font-black"
+              style={{ backgroundColor: "#120016" }}
+            >
+              +50
+            </div>
+          </div>
+
+          {/* Stars + text */}
+          <div>
+            <div className="flex items-center gap-1 mb-1">
+              {[...Array(5)].map((_, i) => (
+                <span key={i} className="text-[#BFFF00] text-base">
+                  ★
+                </span>
+              ))}
+            </div>
+            <p className="text-white/60 text-xs">
+              <span className="text-white font-bold">5.0/5</span> (50+ happy
+              clients)
+            </p>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="hidden sm:block w-px h-10 bg-white/10" />
+
+        {/* Status badges */}
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 rounded-full border border-[#BFFF00] flex items-center justify-center">
+              <div className="w-2 h-2 rounded-full bg-[#BFFF00]" />
+            </div>
+            <span className="text-[#BFFF00] text-xs font-medium tracking-wide">
+              Available for work
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <svg
+              className="w-4 h-4 text-white/40"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <circle cx="12" cy="12" r="10" strokeWidth="1.5" />
+              <path d="M12 6v6l4 2" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+            <span className="text-white/40 text-xs tracking-wide">
+              Replies in 24hrs
+            </span>
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }

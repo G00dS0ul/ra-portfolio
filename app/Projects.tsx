@@ -11,6 +11,20 @@ import GlitchText from "./GlitchText";
 import { cloudImg } from "./lib/cloudinary";
 import { createPortal } from "react-dom";
 
+type AspectRatio = {
+  height: string;
+  objectFit: "cover" | "contain";
+  bgColor?: string;
+};
+
+type Category = {
+  id: string;
+  name: string;
+  filter: (project: Project) => boolean;
+  gridCols: string;
+  aspectRatio: AspectRatio;
+};
+
 type Project = {
   id: string;
   name: string;
@@ -109,6 +123,38 @@ const PROJECTS: Project[] = [
   },
 ];
 
+// ── Category configuration ──
+const CATEGORIES: Category[] = [
+  {
+    id: "branding",
+    name: "Branding & Identity",
+    filter: (p) => p.category === "Branding" || p.category === "Brand Identity",
+    gridCols: "grid-cols-1 md:grid-cols-2",
+    aspectRatio: { height: "340px", objectFit: "cover" },
+  },
+  {
+    id: "social",
+    name: "Social Media",
+    filter: (p) => p.category === "Social Media",
+    gridCols: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+    aspectRatio: { height: "420px", objectFit: "cover" },
+  },
+  {
+    id: "ads",
+    name: "Ad Design",
+    filter: (p) => p.category === "Ad Design",
+    gridCols: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+    aspectRatio: { height: "480px", objectFit: "contain", bgColor: "#1a0020" },
+  },
+  {
+    id: "packaging",
+    name: "Packaging",
+    filter: (p) => p.category === "Packaging",
+    gridCols: "grid-cols-1 md:grid-cols-2",
+    aspectRatio: { height: "340px", objectFit: "cover" },
+  },
+];
+
 // ── Style objects defined outside JSX to avoid rendering issues ──
 const cardStyle = { transformStyle: "preserve-3d" as const };
 const bigViewStyle = { height: "clamp(200px, 50vw, 340px)" };
@@ -140,7 +186,15 @@ const backdropStyle = {
   backdropFilter: "blur(10px)",
 };
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProjectCard({
+  project,
+  index,
+  aspectRatio,
+}: {
+  project: Project;
+  index: number;
+  aspectRatio: AspectRatio;
+}) {
   const [featuredIdx, setFeaturedIdx] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const controls = useAnimation();
@@ -171,7 +225,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   }, []);
 
   const cardStyle = { transformStyle: "preserve-3d" as const };
-  const bigViewStyle = { height: "340px" };
+  const bigViewStyle = { height: aspectRatio.height };
+  const imageContainerStyle = {
+    objectFit: aspectRatio.objectFit as "cover" | "contain",
+    backgroundColor: aspectRatio.bgColor || "transparent",
+  };
   const gradientOverlay = {
     background:
       "linear-gradient(to top, rgba(18,0,22,0.95) 0%, rgba(18,0,22,0.3) 50%, transparent 100%)",
@@ -256,7 +314,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               src={project.images[featuredIdx]}
               alt={project.name}
               fill
-              className="object-cover"
+              className={aspectRatio.objectFit === "contain" ? "object-contain" : "object-cover"}
+              style={aspectRatio.bgColor ? { backgroundColor: aspectRatio.bgColor } : undefined}
               unoptimized
             />
           </motion.div>
@@ -342,7 +401,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         createPortal(
           <AnimatePresence>
             <motion.div
-              className="fixed inset-0 z-[999] flex items-center justify-center"
+              className="fixed inset-0 z-999 flex items-center justify-center"
               initial={lightboxInitial}
               animate={lightboxAnimate}
               exit={lightboxInitial}
@@ -450,6 +509,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export default function Projects() {
+  const [activeCategory, setActiveCategory] = useState("branding");
+  const activeTabData = CATEGORIES.find((c) => c.id === activeCategory)!;
+  const filteredProjects = PROJECTS.filter(activeTabData.filter);
+
   return (
     <section id="work" className="px-4 sm:px-6 md:px-10 mt-10 sm:mt-20">
       <motion.div
@@ -478,14 +541,77 @@ export default function Projects() {
         </motion.h2>
       </motion.div>
 
-      <div
-        className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"
-        style={{ perspective: "1200px" }}
+      {/* ── Category Tabs ── */}
+      <motion.div
+        className="flex flex-wrap items-center justify-center gap-3 mb-12 mt-8"
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.5 }}
       >
-        {PROJECTS.map((project, i) => (
-          <ProjectCard key={project.id} project={project} index={i} />
-        ))}
-      </div>
+        {CATEGORIES.map((category) => {
+          const isActive = activeCategory === category.id;
+          return (
+            <motion.button
+              key={category.id}
+              onClick={() => setActiveCategory(category.id)}
+              layoutId={`tab-${category.id}`}
+              className={`px-5 py-2 rounded-full font-medium text-sm transition-all duration-300 ${
+                isActive
+                  ? "bg-[#BFFF00] text-bg-primary font-bold"
+                  : "border border-white/15 text-white/50 hover:text-white/70"
+              }`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {category.name}
+            </motion.button>
+          );
+        })}
+      </motion.div>
+
+      {/* ── Projects Grid with Category Animation ── */}
+      <AnimatePresence mode="wait">
+        {filteredProjects.length > 0 ? (
+          <motion.div
+            key={activeCategory}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className={`grid ${activeTabData.gridCols} gap-4 sm:gap-6`}
+            style={{ perspective: "1200px" }}
+          >
+            {filteredProjects.map((project, i) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={i}
+                aspectRatio={activeTabData.aspectRatio}
+              />
+            ))}
+          </motion.div>
+        ) : (
+          <motion.div
+            key={`${activeCategory}-empty`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className={`grid ${activeTabData.gridCols} gap-4 sm:gap-6`}
+            style={{ perspective: "1200px" }}
+          >
+            <div className="col-span-full flex items-center justify-center rounded-xl bg-linear-to-br from-white/5 to-white/2 border border-white/10 p-12 text-center">
+              <div>
+                <p className="text-white/60 text-lg mb-2">Coming Soon</p>
+                <p className="text-white/30 text-sm">
+                  New {activeTabData.name.toLowerCase()} projects will be added here
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

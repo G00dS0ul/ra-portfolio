@@ -6,6 +6,7 @@ import Image from "next/image";
 import GridReveal from "./GridReaveal";
 import Hero from "./Hero";
 import Navbar from "./Navbar";
+import Testimonials from "./Testimonials";
 
 // Lazy load components that are below the fold
 const Projects = lazy(() => import("./Projects"));
@@ -76,6 +77,10 @@ export default function Home() {
           <Projects />
         </Suspense>
 
+        <Suspense fallback={<SectionLoader />}>
+          <Testimonials />
+        </Suspense>
+
         {/* Tools section */}
         <Suspense fallback={<SectionLoader />}>
           <Tools />
@@ -105,7 +110,7 @@ export default function Home() {
               className="hover:text-highlight transition-colors"
             >
               <Image
-                src="/instagram.png"
+                src="/instagram (1).png"
                 alt="Instagram"
                 width={50}
                 height={50}
@@ -118,7 +123,7 @@ export default function Home() {
               className="hover:text-highlight transition-colors"
             >
               <Image
-                src="/behance.png"
+                src="/social (1).png"
                 alt="Behance"
                 width={50}
                 height={50}
@@ -131,7 +136,7 @@ export default function Home() {
               className="hover:text-highlight transition-colors"
             >
               <Image
-                src="/photoroom.png"
+                src="/social (2).png"
                 alt="LinkedIn"
                 width={50}
                 height={50}
