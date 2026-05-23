@@ -42,14 +42,88 @@ const TESTIMONIALS = [
   },
 ];
 
+// Testimonial card component
+function TestimonialCard({
+  testimonial,
+}: {
+  testimonial: (typeof TESTIMONIALS)[0];
+}) {
+  return (
+    <div
+      className="rounded-2xl p-8 sm:p-10 relative h-full"
+      style={{
+        background: "rgba(255,255,255,0.03)",
+        border: "1px solid rgba(255,255,255,0.08)",
+      }}
+    >
+      {/* Quote mark */}
+      <span
+        className="absolute top-6 right-8 text-8xl font-black leading-none select-none"
+        style={{ color: "rgba(210,0,255,0.15)" }}
+      >
+        "
+      </span>
+
+      {/* Stars */}
+      <div className="flex gap-1 mb-6">
+        {[...Array(testimonial.rating)].map((_, i) => (
+          <span key={i} className="text-[#BFFF00] text-lg">
+            ★
+          </span>
+        ))}
+      </div>
+
+      {/* Review text */}
+      <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-8 relative z-10">
+        &ldquo;{testimonial.text}&rdquo;
+      </p>
+
+      {/* Author */}
+      <div className="flex items-center gap-4">
+        <div
+          className="w-12 h-12 rounded-full overflow-hidden border-2 flex-shrink-0"
+          style={{ borderColor: "rgba(210,0,255,0.4)" }}
+        >
+          <Image
+            src={testimonial.avatar}
+            alt={testimonial.name}
+            width={48}
+            height={48}
+            className="object-cover"
+            sizes="48px"
+            loading="lazy"
+          />
+        </div>
+        <div>
+          <p className="text-white font-black text-sm tracking-wide">
+            {testimonial.name}
+          </p>
+          <p className="text-[#D200FF] text-xs tracking-[0.2em] uppercase">
+            {testimonial.role}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Testimonials() {
   const [active, setActive] = useState(0);
+  const [direction, setDirection] = useState(1);
 
-  const prev = () =>
+  const prev = () => {
+    setDirection(-1);
     setActive((a) => (a - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
-  const next = () => setActive((a) => (a + 1) % TESTIMONIALS.length);
+  };
 
-  const t = TESTIMONIALS[active];
+  const next = () => {
+    setDirection(1);
+    setActive((a) => (a + 1) % TESTIMONIALS.length);
+  };
+
+  // Visible cards: active and (active + 1) % length
+  const firstCard = TESTIMONIALS[active];
+  const secondCard = TESTIMONIALS[(active + 1) % TESTIMONIALS.length];
 
   return (
     <section id="testimonials" className="px-4 sm:px-6 md:px-10 mt-32 mb-20">
@@ -69,77 +143,46 @@ export default function Testimonials() {
         </h2>
       </motion.div>
 
-      {/* Main testimonial card */}
-      <div className="max-w-3xl mx-auto">
+      {/* Cards grid */}
+      <div className="max-w-5xl mx-auto">
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
-            initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
-            transition={{ duration: 0.4 }}
-            className="rounded-2xl p-8 sm:p-12 relative"
-            style={{
-              background: "rgba(255,255,255,0.03)",
-              border: "1px solid rgba(255,255,255,0.08)",
+            initial={{
+              opacity: 0,
+              x: direction > 0 ? 60 : -60,
+              filter: "blur(8px)",
             }}
+            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            exit={{
+              opacity: 0,
+              x: direction > 0 ? -60 : 60,
+              filter: "blur(8px)",
+            }}
+            transition={{ duration: 0.5 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
           >
-            {/* Quote mark */}
-            <span
-              className="absolute top-6 right-8 text-8xl font-black leading-none select-none"
-              style={{ color: "rgba(210,0,255,0.15)" }}
-            >
-              "
-            </span>
+            {/* First card */}
+            <TestimonialCard testimonial={firstCard} />
 
-            {/* Stars */}
-            <div className="flex gap-1 mb-6">
-              {[...Array(t.rating)].map((_, i) => (
-                <span key={i} className="text-[#BFFF00] text-lg">
-                  ★
-                </span>
-              ))}
-            </div>
-
-            {/* Review text */}
-            <p className="text-white/70 text-base sm:text-lg leading-relaxed mb-8 relative z-10">
-              &ldquo;{t.text}&rdquo;
-            </p>
-
-            {/* Author */}
-            <div className="flex items-center gap-4">
-              <div
-                className="w-12 h-12 rounded-full overflow-hidden border-2"
-                style={{ borderColor: "rgba(210,0,255,0.4)" }}
-              >
-                <Image
-                  src={t.avatar}
-                  alt={t.name}
-                  width={48}
-                  height={48}
-                  className="object-cover"
-                />
-              </div>
-              <div>
-                <p className="text-white font-black text-sm tracking-wide">
-                  {t.name}
-                </p>
-                <p className="text-[#D200FF] text-xs tracking-[0.2em] uppercase">
-                  {t.role}
-                </p>
-              </div>
+            {/* Second card (hidden on mobile) */}
+            <div className="hidden md:block">
+              <TestimonialCard testimonial={secondCard} />
             </div>
           </motion.div>
         </AnimatePresence>
 
         {/* Navigation */}
         <div className="flex items-center justify-between mt-8">
-          {/* Dots */}
+          {/* Dots — active dot is the first visible card */}
           <div className="flex gap-2">
             {TESTIMONIALS.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setActive(i)}
+                onClick={() => {
+                  setDirection(i > active ? 1 : -1);
+                  setActive(i);
+                }}
                 className="transition-all duration-300"
                 style={{
                   width: i === active ? "24px" : "8px",
@@ -181,7 +224,10 @@ export default function Testimonials() {
         {TESTIMONIALS.map((t, i) => (
           <motion.button
             key={i}
-            onClick={() => setActive(i)}
+            onClick={() => {
+              setDirection(i > active ? 1 : -1);
+              setActive(i);
+            }}
             className="rounded-full overflow-hidden transition-all duration-300"
             style={{
               width: i === active ? "48px" : "36px",
@@ -200,6 +246,8 @@ export default function Testimonials() {
               width={48}
               height={48}
               className="object-cover w-full h-full"
+              sizes="48px"
+              loading="lazy"
             />
           </motion.button>
         ))}

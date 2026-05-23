@@ -93,6 +93,7 @@ export default function Contact() {
               width={30}
               height={30}
               className="object-contain"
+              sizes="30px"
               loading="lazy"
             />
           </div>
@@ -145,6 +146,7 @@ export default function Contact() {
               width={50}
               height={50}
               className="object-contain"
+              sizes="50px"
               loading="lazy"
             />
           </div>
@@ -187,6 +189,7 @@ export default function Contact() {
               alt="WhatsApp QR Code"
               fill
               className="object-cover"
+              sizes="170px"
               unoptimized
               loading="lazy"
               style={{

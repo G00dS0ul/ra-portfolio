@@ -1,20 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect, Suspense, lazy } from "react";
+import { useState, useEffect, Suspense } from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import GridReveal from "./GridReaveal";
 import Hero from "./Hero";
 import Navbar from "./Navbar";
-import Testimonials from "./Testimonials";
 
-// Lazy load components that are below the fold
-const Projects = lazy(() => import("./Projects"));
-const Services = lazy(() => import("./Services"));
-const Clients = lazy(() => import("./Clients"));
-const Tools = lazy(() => import("./Tools"));
-const About = lazy(() => import("./About"));
-const Contact = lazy(() => import("./Contact"));
+// Dynamic load components that are below the fold
+const Projects = dynamic(() => import("./Projects"), { ssr: false });
+const Services = dynamic(() => import("./Services"), { ssr: false });
+const Clients = dynamic(() => import("./Clients"), { ssr: false });
+const Tools = dynamic(() => import("./Tools"), { ssr: false });
+const About = dynamic(() => import("./About"), { ssr: false });
+const Contact = dynamic(() => import("./Contact"), { ssr: false });
+const Testimonials = dynamic(() => import("./Testimonials"), { ssr: false });
 
 // Loading fallback component
 function SectionLoader() {
@@ -35,7 +36,6 @@ export default function Home() {
   useEffect(() => {
     if (introComplete) {
       document.documentElement.style.overflow = "auto";
-      document.body.style.overflow = "auto";
     }
   }, [introComplete]);
 
@@ -128,6 +128,7 @@ export default function Home() {
                 width={50}
                 height={50}
                 className="object-contain w-6 sm:w-8"
+                sizes="(max-width: 640px) 24px, 32px"
                 loading="lazy"
               />
             </a>
@@ -141,6 +142,8 @@ export default function Home() {
                 width={50}
                 height={50}
                 className="object-contain w-6 sm:w-8"
+                sizes="(max-width: 640px) 24px, 32px"
+                loading="lazy"
               />
             </a>
           </div>

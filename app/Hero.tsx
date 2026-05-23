@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import GlitchText from "./GlitchText";
@@ -14,28 +14,12 @@ const BEAMS = [
     delay: 0,
   },
   {
-    left: "18%",
-    color: "#BFFF00",
-    width: 120,
-    height: "75%",
-    blur: 35,
-    delay: 0.4,
-  },
-  {
     left: "30%",
     color: "#D200FF",
     width: 180,
     height: "95%",
     blur: 45,
     delay: 0.8,
-  },
-  {
-    left: "43%",
-    color: "#BFFF00",
-    width: 140,
-    height: "80%",
-    blur: 38,
-    delay: 0.2,
   },
   {
     left: "55%",
@@ -46,28 +30,12 @@ const BEAMS = [
     delay: 1.0,
   },
   {
-    left: "67%",
-    color: "#BFFF00",
-    width: 130,
-    height: "78%",
-    blur: 36,
-    delay: 0.6,
-  },
-  {
     left: "78%",
     color: "#D200FF",
     width: 170,
     height: "88%",
     blur: 42,
     delay: 0.3,
-  },
-  {
-    left: "88%",
-    color: "#BFFF00",
-    width: 150,
-    height: "82%",
-    blur: 40,
-    delay: 0.9,
   },
   {
     left: "96%",
@@ -80,6 +48,7 @@ const BEAMS = [
 ];
 
 export default function Hero() {
+  const [isMobile, setIsMobile] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -95,6 +64,10 @@ export default function Hero() {
   const layer3Y = useTransform(smoothY, [-1, 1], [-35, 35]);
   const rotateX = useTransform(smoothY, [-1, 1], [4, -4]);
   const rotateY = useTransform(smoothX, [-1, 1], [-4, 4]);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
 
   useEffect(() => {
     const handleMouse = (e: MouseEvent) => {
@@ -119,7 +92,7 @@ export default function Hero() {
         />
 
         {/* Animated beams */}
-        {BEAMS.map((beam, i) => (
+        {BEAMS.slice(0, isMobile ? 3 : BEAMS.length).map((beam, i) => (
           <motion.div
             key={i}
             style={{
@@ -199,8 +172,8 @@ export default function Hero() {
             alt="Rayesomo Ayodimeji"
             fill
             className="object-cover"
-            unoptimized
-            loading="lazy"
+            priority
+            sizes="(max-width: 768px) 128px, 160px"
           />
         </motion.div>
 

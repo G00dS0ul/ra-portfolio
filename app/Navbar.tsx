@@ -35,6 +35,7 @@ export default function Navbar() {
         width={120}
         height={40}
         className="object-contain w-24 sm:w-32"
+        sizes="(max-width: 640px) 96px, 128px"
         loading="lazy"
       />
 

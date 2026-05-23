@@ -86,6 +86,7 @@ export default function ProjectPanel({
                   fill
                   className="object-cover"
                   sizes="150px"
+                  loading="lazy"
                 />
               </motion.div>
             ))}

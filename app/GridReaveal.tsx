@@ -20,18 +20,15 @@ export default function GridReveal({
   useEffect(() => {
     if (done) return;
     document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
 
     return () => {
       document.documentElement.style.overflow = "auto";
-      document.body.style.overflow = "auto";
     };
   }, [done]);
 
   useEffect(() => {
     if (triggered) {
       document.documentElement.style.overflow = "hidden";
-      document.body.style.overflow = "hidden";
     }
   }, [triggered]);
 
@@ -43,7 +40,6 @@ export default function GridReveal({
       onRevealing?.();
       setTimeout(() => {
         document.documentElement.style.overflow = "auto";
-        document.body.style.overflow = "auto";
         localStorage.setItem("intro-seen", "true");
         setDone(true);
         onIntroComplete?.();
@@ -109,6 +105,7 @@ export default function GridReveal({
           alt="Portfolio intro"
           fill
           className="object-cover"
+          sizes="100vw"
           priority
           unoptimized
         />
@@ -143,6 +140,7 @@ export default function GridReveal({
               width={400}
               height={400}
               className="object-contain drop-shadow-2xl"
+              sizes="400px"
               priority
             />
 

@@ -38,14 +38,14 @@ const PROJECTS: Project[] = [
     name: "Devub",
     category: "Branding",
     images: [
-      cloudImg("DEVUB_Brand_Guideline-01"),
-      cloudImg("DEVUB_Brand_Guideline-03"),
-      cloudImg("DEVUB_Brand_Guideline-04"),
-      cloudImg("DEVUB_Brand_Guideline-06"),
-      cloudImg("DEVUB_Brand_Guideline-08"),
-      cloudImg("DEVUB_Brand_Guideline-10"),
-      cloudImg("DEVUB_Brand_Guideline-11"),
-      cloudImg("DEVUB_Brand_Guideline-15"),
+      cloudImg("DEVUB_Brand_Guideline-01", 800),
+      cloudImg("DEVUB_Brand_Guideline-03", 800),
+      cloudImg("DEVUB_Brand_Guideline-04", 800),
+      cloudImg("DEVUB_Brand_Guideline-06", 800),
+      cloudImg("DEVUB_Brand_Guideline-08", 800),
+      cloudImg("DEVUB_Brand_Guideline-10", 800),
+      cloudImg("DEVUB_Brand_Guideline-11", 800),
+      cloudImg("DEVUB_Brand_Guideline-15", 800),
     ],
   },
   {
@@ -53,14 +53,14 @@ const PROJECTS: Project[] = [
     name: "ROC B",
     category: "Brand Identity",
     images: [
-      cloudImg("Artboard_4"),
-      cloudImg("Artboard_14"),
-      cloudImg("Artboard_28"),
-      cloudImg("Artboard_30"),
-      cloudImg("Artboard_37"),
-      cloudImg("Artboard_38"),
-      cloudImg("Artboard_43"),
-      cloudImg("Artboard_40"),
+      cloudImg("Artboard_4", 800),
+      cloudImg("Artboard_14", 800),
+      cloudImg("Artboard_28", 800),
+      cloudImg("Artboard_30", 800),
+      cloudImg("Artboard_37", 800),
+      cloudImg("Artboard_38", 800),
+      cloudImg("Artboard_43", 800),
+      cloudImg("Artboard_40", 800),
     ],
   },
   {
@@ -70,13 +70,17 @@ const PROJECTS: Project[] = [
     images: [
       cloudImg(
         "The-Difference-Between-a-Brand-That-Looks-Good-and-One-That-Feels-Right_01",
+        800,
       ),
-      cloudImg("Web3_Explained_Simply"),
-      cloudImg("How_to_Know_If_Your_Website_is_Costing_or_Creating_Client"),
-      cloudImg("When-is-the-right-time-to-build-an-app_01"),
-      cloudImg("Peak_Photon_Jan_Advert_flyer_"),
-      cloudImg("From_Draft_to_Deal"),
-      cloudImg("March_Begins"),
+      cloudImg("Web3_Explained_Simply", 800),
+      cloudImg(
+        "How_to_Know_If_Your_Website_is_Costing_or_Creating_Client",
+        800,
+      ),
+      cloudImg("When-is-the-right-time-to-build-an-app_01", 800),
+      cloudImg("Peak_Photon_Jan_Advert_flyer_", 800),
+      cloudImg("From_Draft_to_Deal", 800),
+      cloudImg("March_Begins", 800),
     ],
   },
   {
@@ -84,14 +88,14 @@ const PROJECTS: Project[] = [
     name: "Senior Forex Academy",
     category: "Branding",
     images: [
-      cloudImg("Logo_on_Sign_Meeting_Room"),
-      cloudImg("Free_iPhone_Mockup"),
-      cloudImg("App_on_Iphone"),
-      cloudImg("SFA_7"),
-      cloudImg("SFA_10"),
-      cloudImg("bottle"),
-      cloudImg("Free_Baseball_Cap_Mockup"),
-      cloudImg("SFA_2"),
+      cloudImg("Logo_on_Sign_Meeting_Room", 800),
+      cloudImg("Free_iPhone_Mockup", 800),
+      cloudImg("App_on_Iphone", 800),
+      cloudImg("SFA_7", 800),
+      cloudImg("SFA_10", 800),
+      cloudImg("bottle", 800),
+      cloudImg("Free_Baseball_Cap_Mockup", 800),
+      cloudImg("SFA_2", 800),
     ],
   },
   {
@@ -99,14 +103,14 @@ const PROJECTS: Project[] = [
     name: "Campaign Flyers",
     category: "Ad Design",
     images: [
-      cloudImg("4-Days_Pickup_Class"),
-      cloudImg("Funding_Challenge-Propstar"),
-      cloudImg("Valentine-PackagesTuntun_02"),
-      cloudImg("CYCRO_3_VENTURES_IS_HIRING_"),
-      cloudImg("Accessories-That-Instantly-Elevate-Your-Suit-Game_01"),
-      cloudImg("BluetickgengLet_s_Get_you_Verified"),
-      cloudImg("Smoothkayfx_advert"),
-      cloudImg("Vote_Tuntun-intent"),
+      cloudImg("4-Days_Pickup_Class", 800),
+      cloudImg("Funding_Challenge-Propstar", 800),
+      cloudImg("Valentine-PackagesTuntun_02", 800),
+      cloudImg("CYCRO_3_VENTURES_IS_HIRING_", 800),
+      cloudImg("Accessories-That-Instantly-Elevate-Your-Suit-Game_01", 800),
+      cloudImg("BluetickgengLet_s_Get_you_Verified", 800),
+      cloudImg("Smoothkayfx_advert", 800),
+      cloudImg("Vote_Tuntun-intent", 800),
     ],
   },
   {
@@ -114,11 +118,11 @@ const PROJECTS: Project[] = [
     name: "Ashbea",
     category: "Social Media",
     images: [
-      cloudImg("Ashbea-Happy-Int_l-Men_s-Day-25"),
-      cloudImg("Convocation-and-Induction-Sales"),
-      cloudImg("Celebrate-your-success-with-luxury"),
-      cloudImg("Whats-your-biggest-Struggle-with-Tailors"),
-      cloudImg("Oxford-or-Timberland"),
+      cloudImg("Ashbea-Happy-Int_l-Men_s-Day-25", 800),
+      cloudImg("Convocation-and-Induction-Sales", 800),
+      cloudImg("Celebrate-your-success-with-luxury", 800),
+      cloudImg("Whats-your-biggest-Struggle-with-Tailors", 800),
+      cloudImg("Oxford-or-Timberland", 800),
     ],
   },
 ];
@@ -314,9 +318,18 @@ function ProjectCard({
               src={project.images[featuredIdx]}
               alt={project.name}
               fill
-              className={aspectRatio.objectFit === "contain" ? "object-contain" : "object-cover"}
-              style={aspectRatio.bgColor ? { backgroundColor: aspectRatio.bgColor } : undefined}
-              unoptimized
+              className={
+                aspectRatio.objectFit === "contain"
+                  ? "object-contain"
+                  : "object-cover"
+              }
+              style={
+                aspectRatio.bgColor
+                  ? { backgroundColor: aspectRatio.bgColor }
+                  : undefined
+              }
+              sizes="(max-width: 768px) 100vw, 50vw"
+              loading="lazy"
             />
           </motion.div>
 
@@ -381,10 +394,11 @@ function ProjectCard({
                   onMouseEnter={() => setFeaturedIdx(realIdx)}
                 >
                   <Image
-                    src={img}
+                    src={img.replace("/w_800/", "/w_150/")}
                     alt={`${project.name} ${realIdx + 1}`}
                     fill
                     className="object-cover"
+                    sizes="110px"
                     unoptimized
                     loading="lazy"
                   />
@@ -435,7 +449,7 @@ function ProjectCard({
                   alt={project.name}
                   fill
                   className="object-contain"
-                  unoptimized
+                  sizes="85vw"
                   loading="lazy"
                 />
               </motion.div>
@@ -493,7 +507,7 @@ function ProjectCard({
                         alt={`${project.name} ${i + 1}`}
                         fill
                         className="object-cover"
-                        unoptimized
+                        sizes="60px"
                         loading="lazy"
                       />
                     </div>
@@ -605,7 +619,8 @@ export default function Projects() {
               <div>
                 <p className="text-white/60 text-lg mb-2">Coming Soon</p>
                 <p className="text-white/30 text-sm">
-                  New {activeTabData.name.toLowerCase()} projects will be added here
+                  New {activeTabData.name.toLowerCase()} projects will be added
+                  here
                 </p>
               </div>
             </div>

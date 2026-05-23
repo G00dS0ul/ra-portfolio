@@ -143,6 +143,7 @@ export default function About() {
                 width={300}
                 height={300}
                 className="object-contain relative z-10 rounded-2xl"
+                sizes="300px"
                 loading="lazy"
               />
             </div>
@@ -173,6 +174,8 @@ export default function About() {
                   width={40}
                   height={40}
                   className="object-cover"
+                  sizes="40px"
+                  loading="lazy"
                 />
               </div>
             ))}

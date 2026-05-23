@@ -190,6 +190,7 @@ export default function SplashIntro() {
               alt="paint splash"
               fill
               className="object-contain"
+              sizes="500px"
               loading="lazy"
             />
           </div>

@@ -74,6 +74,7 @@ export default function Tools() {
                   alt={tool.name}
                   width={60}
                   height={60}
+                  sizes="60px"
                   loading="lazy"
                   unoptimized
                   className="object-contain transition-all duration-200 opacity-70 group-hover:opacity-100 group-hover:scale-110 group-hover:brightness-150"
