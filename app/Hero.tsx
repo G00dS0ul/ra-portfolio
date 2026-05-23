@@ -103,14 +103,19 @@ export default function Hero() {
               height: beam.height,
               transform: "translateX(-50%)",
               background: `linear-gradient(to bottom, ${beam.color} 0%, ${beam.color}CC 30%, ${beam.color}44 70%, transparent 100%)`,
-              filter: `blur(${beam.blur}px)`,
+              filter: isMobile ? "none" : `blur(${beam.blur}px)`,
               borderRadius: "0 0 50% 50%",
               zIndex: 0,
+              willChange: "transform",
             }}
-            animate={{
-              opacity: [0.15, 0.35, 0.15],
-              scaleY: [0.95, 1.05, 0.95],
-            }}
+            animate={
+              isMobile
+                ? {}
+                : {
+                    opacity: [0.15, 0.35, 0.15],
+                    scaleY: [0.95, 1.05, 0.95],
+                  }
+            }
             transition={{
               duration: 3 + beam.delay * 2,
               repeat: Infinity,

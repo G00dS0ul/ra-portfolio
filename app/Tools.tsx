@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const TOOLS = [
   { name: "Tool 1", logo: "/tool1.png" },
-  { name: "Tool 2", logo: "/tool2.png" },
+  { name: "Tool 2", logo: "/toole.png" },
   { name: "Tool 3", logo: "/tool3.png" },
   { name: "Tool 4", logo: "/tool4.png" },
   { name: "Tool 5", logo: "/tool5.png" },
@@ -67,17 +67,31 @@ export default function Tools() {
             TOOLS.map((tool, index) => (
               <div
                 key={`${copyIndex}-${index}`}
-                className="flex items-center justify-center px-3 sm:px-6 shrink-0 group cursor-default"
+                style={{
+                  width: "64px",
+                  height: "64px",
+                  flexShrink: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  margin: "0 24px",
+                }}
+                className="group cursor-default"
               >
                 <Image
                   src={tool.logo}
                   alt={tool.name}
-                  width={60}
-                  height={60}
-                  sizes="60px"
+                  width={56}
+                  height={56}
+                  sizes="56px"
                   loading="lazy"
                   unoptimized
-                  className="object-contain transition-all duration-200 opacity-70 group-hover:opacity-100 group-hover:scale-110 group-hover:brightness-150"
+                  style={{
+                    objectFit: "contain",
+                    width: "56px",
+                    height: "56px",
+                  }}
+                  className="transition-all duration-200 opacity-70 group-hover:opacity-100 group-hover:scale-110 group-hover:brightness-150"
                 />
               </div>
             )),
