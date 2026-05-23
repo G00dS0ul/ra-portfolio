@@ -1,18 +1,22 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { cloudImg } from "./lib/cloudinary";
 
 const BRANDS = [
-  { name: "Devub", logo: "/Devub.png" },
-  { name: "Roc B", logo: "/Roc b.png" },
-  { name: "Senior Forex Academy", logo: "/Senior Forex Academy.png" },
-  { name: "Teqforge", logo: "/teqforge.png" },
-  { name: "Peak Photon", logo: "/peak photon.png" },
-  { name: "Nexera Creatives", logo: "/nexera creatives.png" },
-  { name: "Hyprops", logo: "/Hyprops-Logo.png" },
-  { name: "Gold Exchange", logo: "/Gold Exchange.png" },
-  { name: "Freshmate", logo: "/freshmate.png" },
-  { name: "Smoothkay FX", logo: "/Smookayfx.png" },
+  { name: "Devub", logo: cloudImg("Devub.png", 200) },
+  { name: "Roc B", logo: cloudImg("Roc b.png", 200) },
+  {
+    name: "Senior Forex Academy",
+    logo: cloudImg("Senior Forex Academy.png", 200),
+  },
+  { name: "Teqforge", logo: cloudImg("teqforge.png", 200) },
+  { name: "Peak Photon", logo: cloudImg("peak photon.png", 200) },
+  { name: "Nexera Creatives", logo: cloudImg("nexera creatives.png", 200) },
+  { name: "Hyprops", logo: cloudImg("Hyprops-Logo.png", 200) },
+  { name: "Gold Exchange", logo: cloudImg("Gold Exchange.png", 200) },
+  { name: "Freshmate", logo: cloudImg("freshmate.png", 200) },
+  { name: "Smoothkay FX", logo: cloudImg("Smookayfx.png", 200) },
 ];
 
 export default function Clients() {
